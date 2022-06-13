@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <title>Search Bar Index</title>
+</head>
+<body>
+
+  <div class="container">
+    <br><br>
+
+    <h1>All Records</h1>
+
+    <br><br>
+
+    <form action="{% url 'search_results' %}" method="get">
+      <input type="search" name="q" placeholder="Search..." class="form-control">
+    </form>
+
+    <br><br>
+
+    {% for result in search_results %}
+      <ul>
+        <li>{{ result.type }} - {{ result.id }} <i>{{ result.project_ids }}</i><br><b>{{ result.word_bag }}</b></li>
+      </ul>
+    {% empty %}
+      <p>The database is empty. Add some search indexes.</p>
+    {% endfor %}
+
+    <br><br>
+  </div>
+
+</body>
+</html>
